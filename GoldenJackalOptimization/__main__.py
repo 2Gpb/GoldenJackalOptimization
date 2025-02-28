@@ -14,7 +14,7 @@ def test():
         func = func[1]
         function_name, lb, up, dim = Benchmarks.get_function_param(func.__name__)
         start_time = time()
-        gjo = GoldenJackalOptimization(fitness_function=func)
+        gjo = GoldenJackalOptimization(fitness_function=func, bounds=(lb, up))
         best_solution, best_score = gjo.optimize()
         time_s = time() - start_time
         print(f'function_name = {function_name}\n'

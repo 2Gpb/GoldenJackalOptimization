@@ -3,7 +3,7 @@ from Jackal import *
 
 
 class GoldenJackalOptimization:
-    def __init__(self, fitness_function, pop_size=30, dim=10, bounds=(-5, 5), max_iter=400):
+    def __init__(self, fitness_function, bounds, pop_size=30, dim=10, max_iter=400):
         self.pop_size = pop_size
         self.dim = dim
         self.bounds = bounds
@@ -33,3 +33,4 @@ class GoldenJackalOptimization:
             self.female_jackal = sorted(self.population, key=lambda j: j.fitness)[1]
 
         return self.male_jackal.position, self.male_jackal.fitness
+
