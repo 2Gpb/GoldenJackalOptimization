@@ -2,11 +2,12 @@ import numpy as np
 
 
 class Jackal:
-    def __init__(self, dim, bounds):
+    def __init__(self, dim, bounds, fitness_function):
         self.dim = dim
         self.bounds = bounds
         self.position = np.random.uniform(bounds[0], bounds[1], dim)
-        self.fitness = self.evaluate()
+        self.fitness_function = fitness_function
+        self.fitness = float('inf')
 
     def evaluate(self):
         return np.sum(self.position ** 2)
@@ -16,4 +17,4 @@ class Jackal:
         new_position = center_of_leaders - evading_energy * np.abs(levy_factor * self.position - center_of_leaders)
         new_position = np.clip(new_position, self.bounds[0], self.bounds[1])
         self.position = new_position
-        self.fitness = self.evaluate()
+        self.fitness = self.fitness_function(self.position)

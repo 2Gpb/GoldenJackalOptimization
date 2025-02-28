@@ -3,12 +3,13 @@ from Jackal import *
 
 
 class GoldenJackalOptimization:
-    def __init__(self, pop_size=30, dim=10, bounds=(-5, 5), max_iter=200):
+    def __init__(self, fitness_function, pop_size=30, dim=10, bounds=(-5, 5), max_iter=400):
         self.pop_size = pop_size
         self.dim = dim
         self.bounds = bounds
         self.max_iter = max_iter
-        self.population = [Jackal(dim, bounds) for _ in range(pop_size)]
+        self.__fitness_function = fitness_function
+        self.population = [Jackal(dim, bounds, fitness_function) for _ in range(pop_size)]
         self.male_jackal = min(self.population, key=lambda j: j.fitness)
         self.female_jackal = sorted(self.population, key=lambda j: j.fitness)[1]
 
